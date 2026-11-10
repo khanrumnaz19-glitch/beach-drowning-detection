@@ -20,3 +20,16 @@ Observations:
 - Open-water set is mostly close-up stock photos -> not representative of beach cameras.
 - Label noise: some unlabelled people; one pool image tagged as open water.
 - Setting labels done by one person; to be double-checked by a second team member.
+
+## SeaDronesSee (realistic open water, drone view, Roboflow copy, 688 images, 2,386 people)
+92% of people are tiny (<1% of image area). Only people in water are labelled (not on boats).
+Images were stretched to 640x640 by the uploader.
+
+| Test | Person-only P | R | mAP50 | mAP50-95 |
+|---|---|---|---|---|
+| @ 640 px | 0.385 | 0.376 | 0.261 | 0.084 |
+| @ 1280 px (no retraining) | 0.437 | 0.504 | 0.359 | 0.106 |
+
+- Person-only mAP50 drops from 0.623 (our pool test) to 0.261 at sea.
+- Testing at higher resolution alone recovers ~0.10 mAP50 -> small objects are the main problem.
+- "Whole-image box" error appears at 640 px, disappears at 1280 px.
