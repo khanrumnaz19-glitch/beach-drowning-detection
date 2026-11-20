@@ -27,3 +27,13 @@ Cutoff chosen on validation set, confirmed on test set.
 
 - Lowering the cutoff 0.25 -> 0.15 raises drowning recall 0.49 -> 0.58 without retraining.
 - Extra false alarms to be filtered by the tracking stage (alert only if drowning persists over several seconds).
+
+## A3 — Data cleaning (preparation)
+- 349 training images flagged as close-up stock photos (box > 50% of image), many colour-distorted -> removed.
+- 968 rotated copies (black corners) kept for now (valid content, no specific error linked).
+- New "surveillance-style" test subset: 976 of 1,109 test images (close-ups removed).
+
+| Model | Surveillance test mAP50 | Surveillance test Drowning AP50 |
+|---|---|---|
+| YOLO11n | 0.620 | 0.413 |
+| YOLO11n + Pool-Watch | 0.622 | 0.483 |
